@@ -1,6 +1,7 @@
 package com.fuybooo.test;
 
 import com.fuybooo.pojo.Category;
+import com.fuybooo.pojo.Product;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -32,12 +33,21 @@ public class TestMybatis {
 //            System.out.println(c.getName());
 //        }
         // 测试多条件查询
-        Map<String, Object> param = new HashMap<>();
-        param.put("id", 1);
-        param.put("name", "是");
-        List<Category> cs = tb.listCategoryByIdAndName("listCategoryByIdAndName", param);
+//        Map<String, Object> param = new HashMap<>();
+//        param.put("id", 1);
+//        param.put("name", "是");
+//        List<Category> cs = tb.listCategoryByIdAndName("listCategoryByIdAndName", param);
+//        for (Category c: cs) {
+//            System.out.println(c.getName());
+//        }
+        // 关联一对多查询
+        List<Category> cs = tb.getListBySelectId("listCategoryOnProduct");
         for (Category c: cs) {
-            System.out.println(c.getName());
+            System.out.println(c);
+            List<Product> ps = c.getProducts();
+            for (Product p: ps) {
+                System.out.println("\t" + p);
+            }
         }
         tm.getList(tb);
         tb.ss.commit();
