@@ -19,4 +19,9 @@
         select c.*, p.*, c.id 'cid', p.id 'pid', c.name 'cname', p.name 'pname'
         from category c left join product p on c.id = p.cid
     </select>
+    <select id="getProduct" resultMap="productBean">
+        select c.*, p.*, c.id 'cid', p.id 'pid', c.name 'cname', p.name 'pname'
+        from category c left join product p on c.id = p.cid
+        where p.id = #{id}
+    </select>
 </mapper>
